@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.13)
+project(cache_friendly)
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(linked_list linked_list.cpp)
+add_executable(linear_array linear_array.cpp)
+add_executable(bsearch_array bsearch_array.cpp)
+add_executable(map map.cpp)
+add_executable(heap_aux heap_aux.cpp)
+add_executable(bheap_aux bheap_aux.cpp)
