@@ -16,12 +16,12 @@ static timer timeouts;
 static
 timer* add_behind(timer* anchor, uint32_t deadline, timer_cb cb, void* userp)
 {
-  timer* t = (timer*)malloc(sizeof(timer));
+  timer* t = new timer;
   t->deadline = deadline;
   t->userp = userp;
   t->callback = cb;
-  t->prev = anchor;
   t->next = anchor->next;
+  t->prev = anchor;
   anchor->next->prev = t;
   anchor->next = t;
   return t;
@@ -45,7 +45,7 @@ void cancel_timer(timer* t)
 {
   t->next->prev = t->prev;
   t->prev->next = t->next;
-  free(t);
+  delete t;
 }
 
 bool shoot_first()
