@@ -4,14 +4,14 @@
 
 typedef uint32_t (*timer_cb)(void*);
 struct timer {
-  uint32_t deadline;
-  void* userp;
-  timer_cb callback;
-  struct timer* next;
-  struct timer* prev;
+  uint32_t deadline = 0;
+  void* userp = nullptr;
+  timer_cb callback = nullptr;
+  struct timer* next = this;
+  struct timer* prev = this;
 };
 
-static timer timeouts = { 0, NULL, NULL, &timeouts, &timeouts };
+static timer timeouts;
 
 static
 timer* add_behind(timer* anchor, uint32_t deadline, timer_cb cb, void* userp)
